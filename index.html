@@ -11,7 +11,7 @@
             --gold: #d4af37;
             --gold-light: #f1e5ac;
             --bg-dark: #000000;
-            --card-bg: rgba(17, 17, 17, 0.9); /* 半透明讓背景透出來 */
+            --card-bg: rgba(22, 22, 22, 0.85);
             --text-light: #ffffff;
         }
 
@@ -24,15 +24,13 @@
             overflow-x: hidden;
         }
 
-        /* 關鍵：視差背景延伸設計 */
+        /* 視差背景延伸設計 */
         .parallax-hero {
             position: relative;
             width: 100%;
-            height: 60vh; /* 調整高度確保在手機上看車子比例正確 */
-            background-image: url('hero.jpg');
-            background-attachment: fixed; /* 固定背景，造成視差感 */
-            background-position: center center;
-            background-repeat: no-repeat;
+            height: 60vh; 
+            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('hero.jpg') no-repeat center center;
+            background-attachment: fixed;
             background-size: cover;
             display: flex;
             flex-direction: column;
@@ -40,14 +38,13 @@
             align-items: center;
         }
 
-        /* 漸層過渡：讓圖片底部自然融入下方的黑色內容 */
         .parallax-hero::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 150px;
+            height: 120px;
             background: linear-gradient(to top, var(--bg-dark), transparent);
         }
 
@@ -55,7 +52,7 @@
             position: relative;
             z-index: 2;
             text-align: center;
-            padding: 0 15px 30px;
+            padding: 0 15px 25px;
         }
 
         .header-wrap h1 {
@@ -68,27 +65,26 @@
         .header-wrap p {
             font-size: 1.1rem;
             color: var(--gold);
-            margin: 10px 0 0;
+            margin: 8px 0 0;
             font-style: italic;
-            text-shadow: 0 0 10px rgba(0,0,0,1);
         }
 
-        /* 資訊條 */
+        /* 資訊區 */
         .info-pills {
             background-color: var(--bg-dark);
-            padding: 20px 0;
+            padding: 15px 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .pill {
             background: rgba(30, 30, 30, 0.95);
-            padding: 12px 20px;
+            padding: 10px 20px;
             border: 1px solid var(--gold);
             border-radius: 12px;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             width: 85%;
             max-width: 450px;
             text-align: center;
@@ -98,25 +94,36 @@
         .container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 0 15px 100px;
+            padding: 0 15px 80px;
+        }
+
+        /* 天氣氣溫標籤 */
+        .weather-info {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-top: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
         }
 
         .day-label {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--gold);
             background: rgba(26, 26, 26, 0.8);
             padding: 15px;
             border-radius: 10px;
-            margin-top: 40px;
+            margin-top: 35px;
             border-left: 10px solid var(--gold);
             text-align: center;
             backdrop-filter: blur(5px);
         }
 
-        /* 行程卡片：全員金條 */
+        /* 行程卡片：全員立體金條 */
         .event-card {
-            margin-top: 20px;
-            padding: 20px;
+            margin-top: 15px;
+            padding: 18px 20px;
             background: var(--card-bg);
             border-radius: 12px;
             display: flex;
@@ -125,10 +132,8 @@
             position: relative;
             overflow: hidden;
             border: 1px solid #222;
-            backdrop-filter: blur(5px);
         }
 
-        /* 每一行左側的立體金條 */
         .event-card::before {
             content: '';
             position: absolute;
@@ -141,28 +146,26 @@
         }
 
         .place-name {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: bold;
             padding-left: 15px;
             flex: 1;
         }
 
-        /* 指南針導航按鈕 */
         .nav-link {
             color: var(--gold);
             font-size: 2rem;
             text-decoration: none;
-            padding-left: 15px;
+            padding-left: 10px;
         }
 
         @media (max-width: 768px) {
             .parallax-hero {
-                height: 50vh; /* 手機版高度適配 */
-                background-attachment: scroll; /* 手機版視差有時會抖動，改為滾動最穩定 */
+                height: 50vh;
+                background-attachment: scroll;
             }
-            .header-wrap h1 { font-size: 1.8rem; }
             .place-name { font-size: 1.4rem; }
-            .day-label { font-size: 1.7rem; }
+            .day-label { font-size: 1.6rem; }
         }
     </style>
 </head>
@@ -185,11 +188,17 @@
     </div>
 
     <div class="container">
-        <div class="day-label">第一天：3/14 (六)</div>
+        <div class="day-label">
+            第一天：3/14 (六)
+            <div class="weather-info">
+                <span><i class="fa-solid fa-sun"></i> 多雲時晴</span>
+                <span><i class="fa-solid fa-temperature-half"></i> 18°C - 26°C</span>
+            </div>
+        </div>
         
         <div class="event-card">
             <span class="place-name">鳳頂 7-11 集合</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=鳳頂7-11" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=鳳頂路285號7-11" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
 
         <div class="event-card">
@@ -207,7 +216,13 @@
             <a href="https://www.google.com/maps/search/?api=1&query=羅東幸福YES民宿" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
 
-        <div class="day-label">第二天：3/15 (日)</div>
+        <div class="day-label">
+            第二天：3/15 (日)
+            <div class="weather-info">
+                <span><i class="fa-solid fa-cloud"></i> 陰時多雲</span>
+                <span><i class="fa-solid fa-temperature-low"></i> 16°C - 22°C</span>
+            </div>
+        </div>
 
         <div class="event-card">
             <span class="place-name">坪林茶鄉牌樓</span>
@@ -221,11 +236,11 @@
 
         <div class="event-card">
             <span class="place-name">通宵日落大道</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=通宵日落大道" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=通宵日落大道觀景台" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
     </div>
 
-    <div style="background: rgba(17,17,17,1); padding: 50px 20px; text-align: center; border-top: 2px solid var(--gold);">
+    <div style="background: #111; padding: 40px 20px; text-align: center; border-top: 2px solid var(--gold);">
         <p style="font-size: 1.4rem; font-style: italic; color: #ccc;">「凱旋而歸，是騎士唯一的終點。」</p>
     </div>
 
