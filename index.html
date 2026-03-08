@@ -2,242 +2,322 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes">
     <title>2026 寂寞男人環島圓夢杯</title>
+    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
     <style>
         :root {
             --gold: #d4af37;
             --gold-light: #f1e5ac;
             --bg-dark: #000000;
-            --card-bg: #161616;
+            --card-bg: #111111;
             --text-light: #ffffff;
         }
 
-        body {
+        body, html {
+            height: 100%;
+            margin: 0;
             font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
             background-color: var(--bg-dark);
             color: var(--text-light);
-            margin: 0;
-            padding: 0;
-            line-height: 1.4;
+            line-height: 1.6;
+            overflow-x: hidden; /* 防止橫向捲動 */
         }
 
-        /* 100% 不裁切圖片區 */
-        .hero-banner {
-            width: 100%;
-            background-color: #000;
-            line-height: 0;
+        /* =========================================
+           關鍵：Parallax 視差背景設定 (沉浸式)
+           ========================================= */
+        .parallax-wrapper {
+            /* 用於建立視差滾動的容器 */
+            perspective: 1px;
+            height: 100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+            /* 針對 iOS 的優化 */
+            -webkit-overflow-scrolling: touch; 
         }
 
-        .hero-banner img {
-            width: 100%;
-            height: auto;
-            display: block;
+        .parallax-layer {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
         }
 
-        /* 標題區：文字在圖片下方，不遮擋車身 */
-        .header-section {
+        .parallax-bg {
+            /* 背景層：放海報圖 */
+            background-image: url('hero.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            
+            /* 關鍵：視差移動速度設定 */
+            transform: translateZ(-1px) scale(2); 
+            z-index: -1;
+            
+            /* 針對手機版背景不裁剪的優化 */
+            height: 100%; 
+        }
+
+        /* 內容層：文字與行程 */
+        .content-layer {
+            position: relative;
+            z-index: 1;
+            padding-top: 60vh; /* 預留上方空間顯現車子 */
+            background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 50%, #000 100%);
+        }
+
+        /* =========================================
+           標題與資訊區 (中年友好大字體)
+           ========================================= */
+        .header-content {
             text-align: center;
-            padding: 20px 15px;
-            background: linear-gradient(to bottom, #000, #111);
+            padding: 0 20px 40px;
+            text-shadow: 2px 2px 15px rgba(0,0,0,1);
         }
 
-        .header-section h1 {
-            font-size: 1.8rem;
+        .header-content h1 {
+            font-size: 3rem; /* 極大標題 */
             margin: 0;
+            letter-spacing: 5px;
             color: #fff;
-            letter-spacing: 2px;
+            font-weight: 900;
         }
 
-        .header-section p {
-            font-size: 1.1rem;
-            color: var(--gold);
-            margin: 8px 0 20px;
+        .header-content p {
+            font-size: 1.5rem; /* 大字語錄 */
+            color: var(--gold-light);
+            margin: 15px 0 30px;
             font-style: italic;
+            font-weight: bold;
         }
 
         .info-pill {
-            background: rgba(40, 40, 40, 0.9);
-            padding: 10px 15px;
-            border: 1px solid var(--gold);
+            background: rgba(40, 40, 40, 0.95);
+            padding: 15px 25px;
+            border: 2px solid var(--gold);
             border-radius: 50px;
-            margin: 0 auto 10px;
-            font-size: 1.1rem;
+            margin: 0 auto 15px;
+            font-size: 1.3rem; /* 大字車型資訊 */
             width: 90%;
-            max-width: 450px;
+            max-width: 500px;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
 
-        /* 行程容器 */
+        /* =========================================
+           行程列表區 (金條與大字體)
+           ========================================= */
         .container {
-            max-width: 600px;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 0 15px 60px;
+            padding: 0 15px 100px;
         }
 
         .day-header {
-            font-size: 1.8rem;
+            font-size: 2.2rem; /* 極大日期標題 */
             color: var(--gold);
-            background: #1a1a1a;
-            padding: 12px;
-            border-radius: 8px;
-            margin-top: 25px;
-            border-left: 10px solid var(--gold);
+            background: rgba(26, 26, 26, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 40px;
+            border-left: 12px solid var(--gold); /* 大粗金條 */
             text-align: center;
+            backdrop-filter: blur(5px);
         }
 
-        /* 行程卡片與金條 */
+        /* 行程卡片：全員立體金條 */
         .event-box {
-            margin-top: 15px;
-            padding: 18px 20px;
+            margin-top: 20px;
+            padding: 20px 25px;
             background: var(--card-bg);
-            border-radius: 12px;
+            border-radius: 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+            border: 1px solid #222;
         }
 
+        /* 關鍵：每一行左側的立體金條 */
         .event-box::before {
             content: '';
             position: absolute;
             left: 0;
             top: 0;
-            width: 10px;
+            width: 12px; /* 金條寬度 */
             height: 100%;
+            /* 金色漸層，營造高級立體感 */
             background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 100%);
+            box-shadow: 2px 0 10px rgba(212, 175, 55, 0.5);
         }
 
         .place-name {
-            font-size: 1.6rem;
+            font-size: 1.7rem; /* 地點字體超大，中年友好 */
             font-weight: bold;
             color: #fff;
-            padding-left: 15px;
+            padding-left: 15px; /* 為金條留出空間 */
+            flex: 1;
         }
 
-        /* 改良導航按鈕：大且好按 */
+        /* 指南針導航按鈕 (大且好按) */
         .nav-link {
-            background: var(--gold);
-            color: #000 !important;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            color: var(--gold);
+            font-size: 2.2rem; /* 超大按鈕 */
             text-decoration: none;
-            font-size: 1.5rem;
+            padding: 10px;
             transition: 0.2s;
         }
 
         .nav-link:active {
+            color: #fff;
             transform: scale(0.9);
-            background: #fff;
         }
 
-        @media (max-width: 480px) {
-            .header-section h1 { font-size: 1.6rem; }
-            .place-name { font-size: 1.4rem; }
-            .day-header { font-size: 1.5rem; }
+        /* =========================================
+           手機版適配 (RWD)
+           ========================================= */
+        @media (max-width: 768px) {
+            .parallax-bg {
+                /* 手機版背景圖位置優化，確保車子完整 */
+                background-position: center center;
+                /* 縮小 scale，防止手機上圖片太大導致切邊 */
+                transform: translateZ(-1px) scale(1.6); 
+            }
+            .content-layer {
+                padding-top: 55vh; /* 調整手機版文字浮現位置 */
+            }
+            .header-content h1 { font-size: 2.2rem; letter-spacing: 2px; }
+            .header-content p { font-size: 1.2rem; }
+            .info-pill { font-size: 1.1rem; padding: 12px; }
+            .place-name { font-size: 1.5rem; }
+            .day-header { font-size: 1.8rem; }
+            .nav-link { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="hero-banner">
-        <img src="hero.jpg" alt="2026圓夢杯">
-    </div>
-    
-    <div class="header-section">
-        <h1>2026 寂寞男人環島圓夢杯</h1>
-        <p>「不要等到騎不動了，才後悔沒有出發。」</p>
-        <div class="info-pill">
-            <i class="fa-solid fa-motorcycle"></i> <b>TRIDENT | BMW | KAWASAKI</b>
-        </div>
-        <div class="info-pill">
-            <i class="fa-solid fa-calendar-days"></i> <b>3/14 (六) 05:30 鳳頂 7-11 出發</b>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="day-header">第一天：3/14 (六)</div>
+    <div class="parallax-wrapper">
         
-        <div class="event-box">
-            <span class="place-name">鳳頂 7-11 集合</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=7-ELEVEN+鳳頂門市" class="nav-link" target="_blank"><i class="fa-solid fa-location-arrow"></i></a>
-        </div>
+        <div class="parallax-layer parallax-bg"></div>
+        
+        <div class="parallax-layer content-layer">
+            
+            <div class="header-content">
+                <h1>2026 寂寞男人圓夢杯</h1>
+                <p>「不要等到騎不動了，才後悔沒有出發。」</p>
+                
+                <div class="info-pill">
+                    <i class="fa-solid fa-motorcycle"></i> 
+                    <b>TRIDENT | BMW | KAWASAKI</b>
+                </div>
+                
+                <div class="info-pill">
+                    <i class="fa-solid fa-calendar-days"></i> 
+                    <b>3/14 (六) 05:30 鳳頂 7-11 出發</b>
+                </div>
+            </div>
 
-        <div class="event-box">
-            <span class="place-name">大武之心 7-11</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=7-ELEVEN+大武之心門市" class="nav-link" target="_blank"><i class="fa-solid fa-location-arrow"></i></a>
-        </div>
+            <div class="container">
+                <div class="day-header">第一天：MAR 14 SAT.</div>
+                
+                <div class="event-box">
+                    <span class="place-name">集合：鳳頂 7-11</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=地點名稱" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
+                </div>
 
-        <div class="event-box">
-            <span class="place-name">光復糖廠 (193縣道)</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=花蓮觀光糖廠" class="nav-link" target="_blank"><i class="fa-solid fa-location-arrow"></i></a>
-        </div>
+                <div class="event-box">
+                    <span class="place-name">大武之心 7-11</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=大武之心7-11" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
+                </div>
 
-        <div class="event-box" style="background: rgba(212,175,55,0.15);">
-            <span class="place-name" style="color:var(--gold-light);">【午餐】新城老街</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=新城老街" class="nav-link" target="_blank"><i class="fa-solid fa-location-arrow"></i></a>
-        </div>
+                <div class="event-box">
+                    <span class="place-name">光復糖廠 (193縣道)</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=光復糖廠" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
+                </div>
 
-        <div class="event-box">
-            <span class="place-name">台泥 DAKA 園區</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=台泥DAKA園區" class="nav-link" target="_blank"><i class="fa-solid fa-location-arrow"></i></a>
-        </div>
+                <div class="event-box" style="background: rgba(212,175,55,0.15); border: 1px solid var(--gold);">
+                    <span class="place-name" style="color:var(--gold-light);">【午餐】新城老街</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=新城老街" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
+                </div>
 
-        <div class="event-box">
-            <span class="place-name">南方澳豆腐岬</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=豆腐岬風景區" class="nav-link" target="_blank"><i class="fa-solid fa-location-arrow"></i></a>
-        </div>
+                <div class="event-box">
+                    <span class="place-name">台泥 DAKA 園區</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=台泥DAKA園區" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
+                </div>
 
-        <div class="event-box">
-            <span class="place-name">住宿：幸福 YES 民宿</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=羅東幸福YES民宿" class="nav-link" target="_blank"><i class="fa-solid fa-location-arrow"></i></a>
-        </div>
+                <div class="event-box">
+                    <span class="place-name">南方澳豆腐岬</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=南方澳豆腐岬風景區" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
+                </div>
 
-        <div class="event-box" style="background: rgba(212,175,55,0.15);">
-            <span class="place-name" style="color:var(--gold-light);">【晚餐】炙火串燒居酒屋</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=炙火串燒居酒屋" class="nav-link" target="_blank"><i class="fa-solid fa-location-arrow"></i></a>
-        </div>
+                <div class="event-box">
+                    <span class="place-name">住宿：幸福 YES 民宿</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=羅東幸福YES民宿" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
+                </div>
 
-        <div class="day-header">第二天：3/15 (日)</div>
+                <div class="event-box" style="background: rgba(212,175,55,0.15); border: 1px solid var(--gold);">
+                    <span class="place-name" style="color:var(--gold-light);">【晚餐】炙火串燒居酒屋</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=炙火串燒居酒屋" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
+                </div>
 
-        <div class="event-box">
-            <span class="place-name">坪林茶鄉牌樓</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=坪林茶鄉牌樓" class="nav-link" target="_blank"><i class="fa-solid fa-location-arrow"></i></a>
-        </div>
+                <div class="day-header">第二天：MAR 15 SUN.</div>
 
-        <div class="event-box">
-            <span class="place-name">財茂彎 328 喝咖啡</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=財茂彎-328+coffee" class="nav-link" target="_blank"><i class="fa-solid fa-location-arrow"></i></a>
-        </div>
+                <div class="event-box">
+                    <span class="place-name">坪林茶鄉牌樓</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=坪林茶鄉牌樓" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
+                </div>
 
-        <div class="event-box">
-            <span class="place-name">台北港打卡</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=台北港" class="nav-link" target="_blank"><i class="fa-solid fa-location-arrow"></i></a>
-        </div>
+                <div class="event-box">
+                    <span class="place-name">財茂彎 328 喝咖啡</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=財茂彎328" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
+                </div>
 
-        <div class="event-box" style="background: rgba(212,175,55,0.15);">
-            <span class="place-name" style="color:var(--gold-light);">【午餐】桃園莫內咖啡</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=莫內咖啡" class="nav-link" target="_blank"><i class="fa-solid fa-location-arrow"></i></a>
-        </div>
+                <div class="event-box">
+                    <span class="place-name">台北港打卡</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=台北港" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
+                </div>
 
-        <div class="event-box">
-            <span class="place-name">通宵日落大道</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=通宵日落大道觀景台" class="nav-link" target="_blank"><i class="fa-solid fa-location-arrow"></i></a>
-        </div>
+                <div class="event-box">
+                    <span class="place-name">林口水牛坑</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=林口水牛坑" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
+                </div>
 
-        <div class="event-box">
-            <span class="place-name">口湖休息站</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=口湖休息站" class="nav-link" target="_blank"><i class="fa-solid fa-location-arrow"></i></a>
+                <div class="event-box" style="background: rgba(212,175,55,0.15); border: 1px solid var(--gold);">
+                    <span class="place-name" style="color:var(--gold-light);">【午餐】桃園莫內咖啡</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=桃園莫內咖啡" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
+                </div>
+
+                <div class="event-box">
+                    <span class="place-name">通宵日落大道觀景台</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=通宵日落大道" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
+                </div>
+
+                <div class="event-box">
+                    <span class="place-name">回程：口湖休息站</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=口湖休息站" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
+                </div>
+            </div>
+
+            <div style="background: #111; padding: 60px 20px; text-align: center; border-top: 2px solid var(--gold); margin-top: 50px;">
+                <h3 style="color: var(--gold); font-size: 2rem;">騎士語錄</h3>
+                <p style="font-size: 1.5rem; font-style: italic; color: #ccc;">「騎凱旋的不一定是紳士，但一定是回頭率最高的那位。」</p>
+                <p style="font-size: 1.5rem; font-style: italic; color: #ccc;">「2026 年，我們只當自己的騎士。」</p>
+            </div>
+            
+            <footer style="text-align: center; padding: 20px; color: #444; font-size: 0.8rem;">
+                © 2026 LONELY MEN MOTORCLUB
+            </footer>
+
         </div>
     </div>
 
