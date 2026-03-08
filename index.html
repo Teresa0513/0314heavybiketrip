@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
-    <title>2026 寂寞男人環島圓夢杯</title>
+    <title>2026 寂寞男人環島圓夢杯 - Ride with Honor</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
@@ -12,7 +12,6 @@
             --bg-dark: #000000;
             --card-bg: rgba(25, 25, 25, 0.9);
         }
-
         body {
             font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
             background-color: var(--bg-dark);
@@ -21,7 +20,7 @@
             padding: 0;
             line-height: 1.4;
         }
-
+        /* 16:9 沉浸式背景延伸感 */
         .hero-parallax {
             width: 100%;
             aspect-ratio: 16 / 9; 
@@ -29,20 +28,18 @@
                         url('hero.jpg') no-repeat center center;
             background-size: cover;
         }
-
         .brand-section {
             text-align: center;
             padding: 10px 15px 20px;
             background: var(--bg-dark);
         }
-
         .brand-section h1 {
             font-size: 1.8rem;
             margin: 0;
             letter-spacing: 2px;
             font-weight: 900;
         }
-
+        /* 騎士語錄 */
         .honor-slogan {
             font-size: 1.1rem;
             color: var(--gold);
@@ -50,7 +47,6 @@
             font-style: italic;
             font-weight: bold;
         }
-
         .info-pill {
             background: rgba(40, 40, 40, 0.9);
             padding: 10px 15px;
@@ -63,13 +59,11 @@
             display: flex;
             justify-content: center; align-items: center; gap: 8px;
         }
-
         .container {
             max-width: 650px;
             margin: 0 auto;
             padding: 0 15px 100px;
         }
-
         .day-label {
             font-size: 1.6rem;
             color: var(--gold);
@@ -80,7 +74,7 @@
             border-left: 10px solid var(--gold);
             text-align: center;
         }
-
+        /* 行程卡片：全員立體金條 */
         .event-card {
             margin-top: 12px;
             padding: 15px 18px;
@@ -93,18 +87,15 @@
             overflow: hidden;
             border: 1px solid #333;
         }
-
         .event-card::before {
             content: '';
             position: absolute;
             left: 0; top: 0; width: 8px; height: 100%;
             background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 100%);
         }
-
         .place-info { flex: 1; padding-left: 12px; }
         .place-name { font-size: 1.4rem; font-weight: bold; display: block; }
         .note { font-size: 0.9rem; color: #aaa; margin-top: 2px; }
-        
         .weather-grid {
             margin-top: 10px;
             display: grid;
@@ -113,12 +104,9 @@
             font-size: 0.85rem;
             color: var(--gold-light);
         }
-
         .weather-item { display: flex; align-items: center; gap: 5px; }
         .weather-item i { width: 16px; color: var(--gold); }
-
         .nav-btn { color: var(--gold); font-size: 1.8rem; text-decoration: none; padding-left: 10px; }
-
         @media (max-width: 768px) { .place-name { font-size: 1.25rem; } }
     </style>
 </head>
@@ -135,14 +123,14 @@
     </div>
 
     <div class="container">
-        <div class="day-label">3/14 (六) 05:30 鳳頂7-11</div>
+        <div class="day-label">3/14 (六) 05:30 鳳頂 7-11</div>
         
         <div class="event-card" data-city="Kaohsiung" data-date="2026-03-14">
             <div class="place-info">
                 <span class="place-name">鳳頂 7-11 集合出發</span>
                 <div class="weather-grid"><span class="loading">氣象連線中...</span></div>
             </div>
-            <a href="https://share.google/EnLKBp64dl86HNROX" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=7-ELEVEN鳳頂門市" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
 
         <div class="event-card" data-city="Dawu" data-date="2026-03-14">
@@ -225,7 +213,7 @@
         <div class="event-card">
             <div class="place-info">
                 <span class="place-name">新店上 64 往西、接 61 南下</span>
-                <div class="note">注意車隊間距與強風</div>
+                <div class="note">注意車隊間距與西濱強風</div>
             </div>
         </div>
 
@@ -272,13 +260,14 @@
         <div class="event-card" data-city="Kaohsiung" data-date="2026-03-15">
             <div class="place-info">
                 <span class="place-name">平安凱旋</span>
-                <div class="note">抵達終點高雄</div>
+                <div class="note">預計抵達高雄</div>
                 <div class="weather-grid"><span class="loading">氣象連線中...</span></div>
             </div>
         </div>
     </div>
 
     <script>
+        // 即時氣象連線 API
         const apiKey = '88ab07bdb1492d90271d2146ba5efe95'; 
 
         async function updateWeather() {
@@ -292,6 +281,7 @@
                     const resp = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city},TW&units=metric&appid=${apiKey}&lang=zh_tw`);
                     const data = await resp.json();
                     if (resp.ok) {
+                        // 鎖定白天騎乘時段
                         const rideHours = data.list.filter(item => {
                             const dateObj = new Date(item.dt * 1000);
                             return item.dt_txt.includes(targetDate) && dateObj.getHours() >= 9 && dateObj.getHours() <= 18;
