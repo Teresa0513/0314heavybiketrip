@@ -19,6 +19,7 @@
             color: #fff;
             margin: 0;
             padding: 0;
+            line-height: 1.4;
         }
 
         /* 沉浸式背景延伸感 */
@@ -28,6 +29,19 @@
             background: linear-gradient(to bottom, rgba(0,0,0,0) 60%, var(--bg-dark) 100%), 
                         url('hero.jpg') no-repeat center center;
             background-size: cover;
+        }
+
+        .brand-section {
+            text-align: center;
+            padding: 10px 15px 20px;
+            background: var(--bg-dark);
+        }
+
+        .brand-section h1 {
+            font-size: 1.8rem;
+            margin: 0;
+            letter-spacing: 2px;
+            font-weight: 900;
         }
 
         .container {
@@ -47,6 +61,7 @@
             text-align: center;
         }
 
+        /* 行程卡片：全員立體金條 */
         .event-card {
             margin-top: 12px;
             padding: 15px 18px;
@@ -72,6 +87,7 @@
 
         .place-info { flex: 1; padding-left: 12px; }
         .place-name { font-size: 1.4rem; font-weight: bold; display: block; }
+        .note { font-size: 0.9rem; color: #aaa; margin-top: 2px; }
         
         /* 專業氣象欄位 */
         .weather-grid {
@@ -88,61 +104,159 @@
 
         .nav-btn { color: var(--gold); font-size: 1.8rem; text-decoration: none; padding-left: 10px; }
 
-        @media (max-width: 768px) { .place-name { font-size: 1.2rem; } }
+        @media (max-width: 768px) { .place-name { font-size: 1.25rem; } }
     </style>
 </head>
 <body>
 
     <div class="hero-parallax"></div>
     
-    <div style="text-align:center; padding: 20px;">
-        <h1 style="margin:0; letter-spacing:2px;">2026 寂寞男人。圓夢杯</h1>
-        <p style="color:var(--gold); font-style:italic;">Real-time Ride Conditions</p>
+    <div class="brand-section">
+        <h1>2026 寂寞男人。圓夢杯</h1>
+        <div style="font-size: 0.8rem; color: var(--gold); margin-top: 5px;">LIVE WEATHER & TRIP ADVISOR</div>
     </div>
 
     <div class="container">
-        <div class="day-label">3/14 (六) 出發行程</div>
+        <div class="day-label">3/14 (六) 05:30 鳳頂 7-11 出發</div>
         
         <div class="event-card" data-city="Kaohsiung">
             <div class="place-info">
                 <span class="place-name">鳳頂 7-11 集合</span>
-                <div class="weather-grid" id="weather-kaohsiung">
-                    <span class="loading">氣象連線中...</span>
-                </div>
+                <div class="weather-grid"><span class="loading">連線中...</span></div>
             </div>
-            <a href="https://www.google.com/maps/search/鳳頂7-11" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=7-ELEVEN+鳳頂門市" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
 
         <div class="event-card" data-city="Dawu">
             <div class="place-info">
                 <span class="place-name">1. 大武之心 7-11</span>
-                <div class="weather-grid" id="weather-dawu">
-                    <span class="loading">氣象連線中...</span>
-                </div>
+                <div class="weather-grid"><span class="loading">連線中...</span></div>
             </div>
-            <a href="https://www.google.com/maps/search/大武之心7-11" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=大武之心7-11" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
 
-        <div class="day-label">3/15 (日) 回程行程</div>
+        <div class="event-card" data-city="Guangfu">
+            <div class="place-info">
+                <span class="place-name">2. 台9線接193光復糖廠</span>
+                <div class="weather-grid"><span class="loading">連線中...</span></div>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=光復糖廠" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+        </div>
+
+        <div class="event-card" data-city="Xincheng" style="background: rgba(212,175,55,0.1);">
+            <div class="place-info">
+                <span class="place-name" style="color:var(--gold-light);">【午餐】新城老街</span>
+                <div class="weather-grid"><span class="loading">連線中...</span></div>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=新城老街" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+        </div>
+
+        <div class="event-card" data-city="Xiulin">
+            <div class="place-info">
+                <span class="place-name">3. 台泥 DAKA 園區</span>
+                <div class="weather-grid"><span class="loading">連線中...</span></div>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=台泥DAKA園區" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+        </div>
+
+        <div class="event-card" data-city="Su'ao">
+            <div class="place-info">
+                <span class="place-name">4. 南方澳豆腐岬風景區</span>
+                <div class="weather-grid"><span class="loading">連線中...</span></div>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=南方澳豆腐岬" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+        </div>
+
+        <div class="event-card" data-city="Luodong">
+            <div class="place-info">
+                <span class="place-name">5. 入住羅東幸福 YES 民宿</span>
+                <div class="note">羅東鎮中山路三段62號</div>
+                <div class="weather-grid"><span class="loading">連線中...</span></div>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=宜蘭縣羅東鎮中山路三段62號" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+        </div>
+
+        <div class="event-card" data-city="Luodong" style="background: rgba(212,175,55,0.1);">
+            <div class="place-info">
+                <span class="place-name" style="color:var(--gold-light);">18:30 晚餐：炙火串燒居酒屋</span>
+                <div class="note">飯後散步羅東夜市</div>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=炙火串燒居酒屋" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+        </div>
+
+        <div class="day-label">3/15 (日) 07:00 出發</div>
 
         <div class="event-card" data-city="Pinglin">
             <div class="place-info">
                 <span class="place-name">1. 北宜坪林茶鄉牌樓</span>
-                <div class="weather-grid" id="weather-pinglin">
-                    <span class="loading">氣象連線中...</span>
-                </div>
+                <div class="weather-grid"><span class="loading">連線中...</span></div>
             </div>
-            <a href="https://www.google.com/maps/search/坪林茶鄉牌樓" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=坪林茶鄉牌樓" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
-        
+
+        <div class="event-card" data-city="Pinglin">
+            <div class="place-info">
+                <span class="place-name">2. 財茂彎 328 喝咖啡</span>
+                <div class="note">停留 1 小時</div>
+                <div class="weather-grid"><span class="loading">連線中...</span></div>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=財茂彎328" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+        </div>
+
+        <div class="event-card">
+            <div class="place-info">
+                <span class="place-name">3. 新店上 64 往西、接 61 南下</span>
+                <div class="note">注意車隊間距與強風</div>
+            </div>
+        </div>
+
+        <div class="event-card" data-city="Bali">
+            <div class="place-info">
+                <span class="place-name">4. 台北港 (環島人必拍)</span>
+                <div class="weather-grid"><span class="loading">連線中...</span></div>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=台北港" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+        </div>
+
+        <div class="event-card" data-city="Linkou">
+            <div class="place-info">
+                <span class="place-name">5. 林口水牛坑</span>
+                <div class="note">拍照不入坑</div>
+                <div class="weather-grid"><span class="loading">連線中...</span></div>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=林口水牛坑" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+        </div>
+
+        <div class="event-card" data-city="Xinwu" style="background: rgba(212,175,55,0.1);">
+            <div class="place-info">
+                <span class="place-name" style="color:var(--gold-light);">【中餐】桃園莫內咖啡</span>
+                <div class="weather-grid"><span class="loading">連線中...</span></div>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=莫內咖啡" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+        </div>
+
         <div class="event-card" data-city="Tongxiao">
             <div class="place-info">
-                <span class="place-name">6. 通宵日落大道</span>
-                <div class="weather-grid" id="weather-tongxiao">
-                    <span class="loading">氣象連線中...</span>
-                </div>
+                <span class="place-name">6. 通宵日落大道觀景台</span>
+                <div class="weather-grid"><span class="loading">連線中...</span></div>
             </div>
-            <a href="https://www.google.com/maps/search/通宵日落大道" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=通宵日落大道觀景台" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+        </div>
+
+        <div class="event-card" data-city="Kouhu">
+            <div class="place-info">
+                <span class="place-name">7. 口湖休息站</span>
+                <div class="weather-grid"><span class="loading">連線中...</span></div>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=口湖休息站" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+        </div>
+
+        <div class="event-card" data-city="Kaohsiung">
+            <div class="place-info">
+                <span class="place-name">8. 平安凱旋</span>
+                <div class="note">預計抵達高雄</div>
+                <div class="weather-grid"><span class="loading">連線中...</span></div>
+            </div>
         </div>
     </div>
 
@@ -157,7 +271,7 @@
                 const grid = card.querySelector('.weather-grid');
 
                 try {
-                    // 同時獲取即時天氣與預報（獲取降雨機率需要預報資料）
+                    // 獲取預報資料以計算降雨機率 (pop)
                     const resp = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city},TW&units=metric&appid=${apiKey}&lang=zh_tw&cnt=1`);
                     const data = await resp.json();
 
@@ -165,8 +279,8 @@
                         const w = data.list[0];
                         const temp = Math.round(w.main.temp);
                         const desc = w.weather[0].description;
-                        const wind = (w.wind.speed * 3.6).toFixed(1); // 轉為 km/h
-                        const pop = Math.round(w.pop * 100); // 降雨機率
+                        const wind = (w.wind.speed * 3.6).toFixed(1); 
+                        const pop = Math.round(w.pop * 100); 
 
                         grid.innerHTML = `
                             <div class="weather-item"><i class="fa-solid fa-temperature-half"></i> 溫度：${temp}°C</div>
