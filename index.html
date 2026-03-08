@@ -3,298 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
-    <title>2026 寂寞男人環島圓夢杯 - Ride with Honor</title>
+    <title>2026 寂寞男人。圓夢杯</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        :root {
-            --gold: #d4af37;
-            --gold-light: #f1e5ac;
-            --bg-dark: #000000;
-            --card-bg: rgba(25, 25, 25, 0.9);
-        }
-        body {
-            font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
-            background-color: var(--bg-dark);
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            line-height: 1.4;
-        }
-        /* 16:9 沉浸式背景延伸感 */
-        .hero-parallax {
-            width: 100%;
-            aspect-ratio: 16 / 9; 
-            background: linear-gradient(to bottom, rgba(0,0,0,0) 60%, var(--bg-dark) 100%), 
-                        url('hero.jpg') no-repeat center center;
-            background-size: cover;
-        }
-        .brand-section {
-            text-align: center;
-            padding: 10px 15px 20px;
-            background: var(--bg-dark);
-        }
-        .brand-section h1 {
-            font-size: 1.8rem;
-            margin: 0;
-            letter-spacing: 2px;
-            font-weight: 900;
-        }
-        /* 騎士語錄 */
-        .honor-slogan {
-            font-size: 1.1rem;
-            color: var(--gold);
-            margin: 8px 0 15px;
-            font-style: italic;
-            font-weight: bold;
-        }
-        .info-pill {
-            background: rgba(40, 40, 40, 0.9);
-            padding: 10px 15px;
-            border: 1px solid var(--gold);
-            border-radius: 50px;
-            margin: 10px auto;
-            font-size: 1rem;
-            width: 90%;
-            max-width: 450px;
-            display: flex;
-            justify-content: center; align-items: center; gap: 8px;
-        }
-        .container {
-            max-width: 650px;
-            margin: 0 auto;
-            padding: 0 15px 100px;
-        }
-        .day-label {
-            font-size: 1.6rem;
-            color: var(--gold);
-            background: #1a1a1a;
-            padding: 12px;
-            border-radius: 8px;
-            margin-top: 30px;
-            border-left: 10px solid var(--gold);
-            text-align: center;
-        }
-        /* 行程卡片：全員立體金條 */
-        .event-card {
-            margin-top: 12px;
-            padding: 15px 18px;
-            background: var(--card-bg);
-            border-radius: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid #333;
-        }
-        .event-card::before {
-            content: '';
-            position: absolute;
-            left: 0; top: 0; width: 8px; height: 100%;
-            background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 100%);
-        }
+        :root { --gold: #d4af37; --gold-light: #f1e5ac; --bg-dark: #000; --card-bg: rgba(25, 25, 25, 0.95); }
+        body { font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif; background-color: var(--bg-dark); color: #fff; margin: 0; padding: 0; }
+        .hero-parallax { width: 100%; aspect-ratio: 16 / 9; background: linear-gradient(to bottom, transparent 60%, #000 100%), url('hero.jpg') no-repeat center/cover; }
+        .brand-section { text-align: center; padding: 20px; background: #000; }
+        .brand-section h1 { font-size: 1.8rem; margin: 0; letter-spacing: 2px; font-weight: 900; }
+        .honor-slogan { font-size: 1.1rem; color: var(--gold); font-style: italic; font-weight: bold; margin: 8px 0 15px; }
+        .container { max-width: 650px; margin: 0 auto; padding: 0 15px 100px; }
+        .day-label { font-size: 1.6rem; color: var(--gold); background: #1a1a1a; padding: 12px; border-radius: 8px; margin-top: 30px; border-left: 10px solid var(--gold); text-align: center; }
+        .event-card { margin-top: 12px; padding: 18px; background: var(--card-bg); border-radius: 12px; display: flex; justify-content: space-between; align-items: center; position: relative; border: 1px solid #333; overflow: hidden; }
+        .event-card::before { content: ''; position: absolute; left: 0; top: 0; width: 8px; height: 100%; background: linear-gradient(180deg, var(--gold-light), var(--gold)); }
         .place-info { flex: 1; padding-left: 12px; }
         .place-name { font-size: 1.4rem; font-weight: bold; display: block; }
-        .note { font-size: 0.9rem; color: #aaa; margin-top: 2px; }
-        .weather-grid {
-            margin-top: 10px;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-            font-size: 0.85rem;
-            color: var(--gold-light);
-        }
+        .weather-grid { margin-top: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.85rem; color: var(--gold-light); min-height: 40px; }
         .weather-item { display: flex; align-items: center; gap: 5px; }
         .weather-item i { width: 16px; color: var(--gold); }
         .nav-btn { color: var(--gold); font-size: 1.8rem; text-decoration: none; padding-left: 10px; }
-        @media (max-width: 768px) { .place-name { font-size: 1.25rem; } }
     </style>
 </head>
 <body>
 
     <div class="hero-parallax"></div>
-    
     <div class="brand-section">
         <h1>2026 寂寞男人。圓夢杯</h1>
         <div class="honor-slogan">Ride with Honor. 2026 Round-the-Island</div>
-        <div class="info-pill">
-            <i class="fa-solid fa-motorcycle"></i> <b>TRIDENT | BMW | KAWASAKI</b>
+        <div style="background:rgba(40,40,40,0.9); padding:10px 20px; border:1px solid var(--gold); border-radius:50px; display:inline-block; font-size:0.9rem;">
+            TRIDENT | BMW | KAWASAKI
         </div>
     </div>
 
     <div class="container">
-        <div class="day-label">3/14 (六) 05:30 鳳頂 7-11</div>
+        <div class="day-label">3/14 (六) 高雄 ➔ 宜蘭</div>
         
-        <div class="event-card" data-city="Kaohsiung" data-date="2026-03-14">
-            <div class="place-info">
-                <span class="place-name">鳳頂 7-11 集合出發</span>
-                <div class="weather-grid"><span class="loading">氣象連線中...</span></div>
-            </div>
+        <div class="event-card" data-lat="22.5925" data-lon="120.3541" data-date="2026-03-14">
+            <div class="place-info"><span class="place-name">鳳頂 7-11 集合出發</span><div class="weather-grid">連線中...</div></div>
             <a href="https://www.google.com/maps/search/?api=1&query=7-ELEVEN鳳頂門市" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
 
-        <div class="event-card" data-city="Dawu" data-date="2026-03-14">
-            <div class="place-info">
-                <span class="place-name">大武之心 7-11</span>
-                <div class="weather-grid"><span class="loading">氣象連線中...</span></div>
-            </div>
+        <div class="event-card" data-lat="22.3417" data-lon="120.8944" data-date="2026-03-14">
+            <div class="place-info"><span class="place-name">大武之心 7-11</span><div class="weather-grid">連線中...</div></div>
             <a href="https://www.google.com/maps/search/?api=1&query=7-ELEVEN大武之心門市" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
 
-        <div class="event-card" data-city="Guangfu" data-date="2026-03-14">
-            <div class="place-info">
-                <span class="place-name">台9線接193光復糖廠</span>
-                <div class="weather-grid"><span class="loading">氣象連線中...</span></div>
-            </div>
+        <div class="event-card" data-lat="23.6558" data-lon="121.4219" data-date="2026-03-14">
+            <div class="place-info"><span class="place-name">光復糖廠 (193起點)</span><div class="weather-grid">連線中...</div></div>
             <a href="https://www.google.com/maps/search/?api=1&query=花蓮觀光糖廠" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
 
-        <div class="event-card" data-city="24.12,121.64" data-date="2026-03-14" style="background: rgba(212,175,55,0.15);">
-            <div class="place-info">
-                <span class="place-name" style="color:var(--gold-light);">【午餐】新城老街</span>
-                <div class="weather-grid"><span class="loading">氣象連線中...</span></div>
-            </div>
+        <div class="event-card" data-lat="24.1281" data-lon="121.6436" data-date="2026-03-14" style="background:rgba(212,175,55,0.1);">
+            <div class="place-info"><span class="place-name">【午餐】新城老街</span><div class="weather-grid">連線中...</div></div>
             <a href="https://www.google.com/maps/search/?api=1&query=新城老街" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
 
-        <div class="event-card" data-city="Xiulin" data-date="2026-03-14">
-            <div class="place-info">
-                <span class="place-name">台泥 DAKA 園區</span>
-                <div class="weather-grid"><span class="loading">氣象連線中...</span></div>
-            </div>
-            <a href="https://www.google.com/maps/search/?api=1&query=台泥DAKA園區" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
-        </div>
-
-        <div class="event-card" data-city="24.58,121.86" data-date="2026-03-14">
-            <div class="place-info">
-                <span class="place-name">南方澳豆腐岬風景區</span>
-                <div class="weather-grid"><span class="loading">氣象連線中...</span></div>
-            </div>
+        <div class="event-card" data-lat="24.5847" data-lon="121.8656" data-date="2026-03-14">
+            <div class="place-info"><span class="place-name">南方澳豆腐岬風景區</span><div class="weather-grid">連線中...</div></div>
             <a href="https://www.google.com/maps/search/?api=1&query=豆腐岬風景區" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
 
-        <div class="event-card" data-city="Luodong" data-date="2026-03-14">
-            <div class="place-info">
-                <span class="place-name">入住羅東幸福 YES 民宿</span>
-                <div class="note">羅東鎮中山路三段62號</div>
-                <div class="weather-grid"><span class="loading">氣象連線中...</span></div>
-            </div>
+        <div class="event-card" data-lat="24.6750" data-lon="121.7678" data-date="2026-03-14">
+            <div class="place-info"><span class="place-name">入住羅東幸福 YES 民宿</span><div class="weather-grid">連線中...</div></div>
             <a href="https://www.google.com/maps/search/?api=1&query=幸福YES民宿" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
 
-        <div class="event-card" data-city="Luodong" data-date="2026-03-14" style="background: rgba(212,175,55,0.15);">
-            <div class="place-info">
-                <span class="place-name" style="color:var(--gold-light);">18:30 晚餐：炙火串燒居酒屋</span>
-                <div class="note">飯後散步羅東夜市</div>
-                <div class="weather-grid"><span class="loading">氣象連線中...</span></div>
-            </div>
-            <a href="https://www.google.com/maps/search/?api=1&query=炙火串燒居酒屋" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
-        </div>
+        <div class="day-label">3/15 (日) 宜蘭 ➔ 高雄</div>
 
-        <div class="day-label">3/15 (日) 07:00 出發</div>
-
-        <div class="event-card" data-city="Pinglin" data-date="2026-03-15">
-            <div class="place-info">
-                <span class="place-name">北宜坪林茶鄉牌樓</span>
-                <div class="weather-grid"><span class="loading">氣象連線中...</span></div>
-            </div>
+        <div class="event-card" data-lat="24.9367" data-lon="121.7117" data-date="2026-03-15">
+            <div class="place-info"><span class="place-name">北宜坪林茶鄉牌樓</span><div class="weather-grid">連線中...</div></div>
             <a href="https://www.google.com/maps/search/?api=1&query=坪林茶鄉牌樓" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
 
-        <div class="event-card" data-city="Pinglin" data-date="2026-03-15">
-            <div class="place-info">
-                <span class="place-name">財茂彎 328 喝咖啡</span>
-                <div class="note">停留 1 小時</div>
-                <div class="weather-grid"><span class="loading">氣象連線中...</span></div>
-            </div>
-            <a href="https://www.google.com/maps/search/?api=1&query=財茂彎-328coffee" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
-        </div>
-
-        <div class="event-card">
-            <div class="place-info">
-                <span class="place-name">新店上 64 往西、接 61 南下</span>
-                <div class="note">注意車隊間距與西濱強風</div>
-            </div>
-        </div>
-
-        <div class="event-card" data-city="Bali" data-date="2026-03-15">
-            <div class="place-info">
-                <span class="place-name">台北港 (環島人必拍)</span>
-                <div class="weather-grid"><span class="loading">氣象連線中...</span></div>
-            </div>
-            <a href="https://www.google.com/maps/search/?api=1&query=台北港" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
-        </div>
-
-        <div class="event-card" data-city="Linkou" data-date="2026-03-15">
-            <div class="place-info">
-                <span class="place-name">林口水牛坑 (拍照不入坑)</span>
-                <div class="weather-grid"><span class="loading">氣象連線中...</span></div>
-            </div>
+        <div class="event-card" data-lat="25.1100" data-lon="121.3100" data-date="2026-03-15">
+            <div class="place-info"><span class="place-name">林口水牛坑</span><div class="weather-grid">連線中...</div></div>
             <a href="https://www.google.com/maps/search/?api=1&query=水牛坑越野場地" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
 
-        <div class="event-card" data-city="Xinwu" data-date="2026-03-15" style="background: rgba(212,175,55,0.15);">
-            <div class="place-info">
-                <span class="place-name" style="color:var(--gold-light);">【中餐】桃園莫內咖啡</span>
-                <div class="weather-grid"><span class="loading">氣象連線中...</span></div>
-            </div>
-            <a href="https://www.google.com/maps/search/?api=1&query=莫內咖啡" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
-        </div>
-
-        <div class="event-card" data-city="Tongxiao" data-date="2026-03-15">
-            <div class="place-info">
-                <span class="place-name">通宵日落大道觀景台</span>
-                <div class="weather-grid"><span class="loading">氣象連線中...</span></div>
-            </div>
+        <div class="event-card" data-lat="24.5244" data-lon="120.7022" data-date="2026-03-15">
+            <div class="place-info"><span class="place-name">通宵日落大道</span><div class="weather-grid">連線中...</div></div>
             <a href="https://www.google.com/maps/search/?api=1&query=通宵日落大道觀景台" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
-        </div>
-
-        <div class="event-card" data-city="Kouhu" data-date="2026-03-15">
-            <div class="place-info">
-                <span class="place-name">口湖休息站</span>
-                <div class="weather-grid"><span class="loading">氣象連線中...</span></div>
-            </div>
-            <a href="https://www.google.com/maps/search/?api=1&query=口湖休息站" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
-        </div>
-
-        <div class="event-card" data-city="Kaohsiung" data-date="2026-03-15">
-            <div class="place-info">
-                <span class="place-name">平安凱旋</span>
-                <div class="note">預計抵達高雄</div>
-                <div class="weather-grid"><span class="loading">氣象連線中...</span></div>
-            </div>
         </div>
     </div>
 
     <script>
-        // 即時氣象連線 API
         const apiKey = '88ab07bdb1492d90271d2146ba5efe95'; 
-
         async function updateWeather() {
-            const cards = document.querySelectorAll('.event-card[data-city]');
+            const cards = document.querySelectorAll('.event-card[data-lat]');
             for (const card of cards) {
-                const city = card.getAttribute('data-city');
+                const lat = card.getAttribute('data-lat');
+                const lon = card.getAttribute('data-lon');
                 const targetDate = card.getAttribute('data-date');
                 const grid = card.querySelector('.weather-grid');
 
                 try {
-                    const resp = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city},TW&units=metric&appid=${apiKey}&lang=zh_tw`);
-                    const data = await resp.json();
-                    if (resp.ok) {
-                        // 鎖定白天騎乘時段
-                        const rideHours = data.list.filter(item => {
-                            const dateObj = new Date(item.dt * 1000);
-                            return item.dt_txt.includes(targetDate) && dateObj.getHours() >= 9 && dateObj.getHours() <= 18;
-                        });
-                        const w = rideHours.length > 0 ? rideHours[0] : data.list.find(i => i.dt_txt.includes(targetDate)) || data.list[0];
+                    const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}&lang=zh_tw`);
+                    const data = await response.json();
+                    
+                    if (data.list) {
+                        const w = data.list.find(item => item.dt_txt.includes(targetDate) && new Date(item.dt * 1000).getHours() >= 9) || data.list[0];
                         grid.innerHTML = `
                             <div class="weather-item"><i class="fa-solid fa-temperature-half"></i> 體感：${Math.round(w.main.feels_like)}°C</div>
                             <div class="weather-item"><i class="fa-solid fa-cloud-rain"></i> 降雨機率：${Math.round(w.pop * 100)}%</div>
                             <div class="weather-item"><i class="fa-solid fa-wind"></i> 風速：${(w.wind.speed * 3.6).toFixed(1)} km/h</div>
                             <div class="weather-item"><i class="fa-solid fa-circle-info"></i> 狀況：${w.weather[0].description}</div>
                         `;
-                    }
-                } catch (e) { grid.innerHTML = '氣象連線逾時'; }
+                    } else { grid.innerHTML = 'API 回傳異常'; }
+                } catch (e) { grid.innerHTML = '連線超時'; }
             }
         }
         window.onload = updateWeather;
