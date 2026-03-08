@@ -22,6 +22,7 @@
         .weather-item { display: flex; align-items: center; gap: 5px; }
         .weather-item i { width: 16px; color: var(--gold); }
         .nav-btn { color: var(--gold); font-size: 1.8rem; text-decoration: none; padding-left: 10px; }
+        .note { font-size: 0.85rem; color: #aaa; margin-top: 4px; }
     </style>
 </head>
 <body>
@@ -36,26 +37,31 @@
     </div>
 
     <div class="container">
-        <div class="day-label">3/14 (六) 高雄 ➔ 宜蘭</div>
+        <div class="day-label">3/14 (六) 05:30 鳳頂 7-11 出發</div>
         
         <div class="event-card" data-lat="22.5925" data-lon="120.3541" data-date="2026-03-14">
             <div class="place-info"><span class="place-name">鳳頂 7-11 集合出發</span><div class="weather-grid">連線中...</div></div>
-            <a href="https://www.google.com/maps/search/?api=1&query=7-ELEVEN鳳頂門市" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=鳳頂7-11" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
 
         <div class="event-card" data-lat="22.3417" data-lon="120.8944" data-date="2026-03-14">
             <div class="place-info"><span class="place-name">大武之心 7-11</span><div class="weather-grid">連線中...</div></div>
-            <a href="https://www.google.com/maps/search/?api=1&query=7-ELEVEN大武之心門市" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=大武之心7-11" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
 
         <div class="event-card" data-lat="23.6558" data-lon="121.4219" data-date="2026-03-14">
-            <div class="place-info"><span class="place-name">光復糖廠 (193起點)</span><div class="weather-grid">連線中...</div></div>
-            <a href="https://www.google.com/maps/search/?api=1&query=花蓮觀光糖廠" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+            <div class="place-info"><span class="place-name">台9線接193光復糖廠</span><div class="weather-grid">連線中...</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=花蓮光復糖廠" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
 
         <div class="event-card" data-lat="24.1281" data-lon="121.6436" data-date="2026-03-14" style="background:rgba(212,175,55,0.1);">
-            <div class="place-info"><span class="place-name">【午餐】新城老街</span><div class="weather-grid">連線中...</div></div>
+            <div class="place-info"><span class="place-name">中餐：新城老街</span><div class="weather-grid">連線中...</div></div>
             <a href="https://www.google.com/maps/search/?api=1&query=新城老街" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+        </div>
+
+        <div class="event-card" data-lat="24.2544" data-lon="121.7511" data-date="2026-03-14">
+            <div class="place-info"><span class="place-name">台泥 DAKA 園區</span><div class="weather-grid">連線中...</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=台泥DAKA園區" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
 
         <div class="event-card" data-lat="24.5847" data-lon="121.8656" data-date="2026-03-14">
@@ -64,25 +70,76 @@
         </div>
 
         <div class="event-card" data-lat="24.6750" data-lon="121.7678" data-date="2026-03-14">
-            <div class="place-info"><span class="place-name">入住羅東幸福 YES 民宿</span><div class="weather-grid">連線中...</div></div>
-            <a href="https://www.google.com/maps/search/?api=1&query=幸福YES民宿" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+            <div class="place-info">
+                <span class="place-name">住宿：羅東幸福 YES 民宿</span>
+                <span class="note">羅東鎮中山路三段62號</span>
+                <div class="weather-grid">連線中...</div>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=羅東幸福YES民宿" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
 
-        <div class="day-label">3/15 (日) 宜蘭 ➔ 高雄</div>
+        <div class="event-card" data-lat="24.6750" data-lon="121.7678" data-date="2026-03-14" style="background:rgba(212,175,55,0.1);">
+            <div class="place-info">
+                <span class="place-name">18:30 晚餐：炙火串燒居酒屋</span>
+                <span class="note">飯後散步羅東夜市</span>
+                <div class="weather-grid">連線中...</div>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=炙火串燒居酒屋" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+        </div>
+
+        <div class="day-label">3/15 (日) 07:00 出發</div>
 
         <div class="event-card" data-lat="24.9367" data-lon="121.7117" data-date="2026-03-15">
             <div class="place-info"><span class="place-name">北宜坪林茶鄉牌樓</span><div class="weather-grid">連線中...</div></div>
             <a href="https://www.google.com/maps/search/?api=1&query=坪林茶鄉牌樓" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
 
+        <div class="event-card" data-lat="24.9583" data-lon="121.6833" data-date="2026-03-15">
+            <div class="place-info">
+                <span class="place-name">財茂彎 328 喝咖啡</span>
+                <span class="note">停留 1 小時</span>
+                <div class="weather-grid">連線中...</div>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=財茂彎328咖啡" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+        </div>
+
+        <div class="event-card">
+            <div class="place-info">
+                <span class="place-name">新店上 64 往西、接 61 南下</span>
+            </div>
+        </div>
+
+        <div class="event-card" data-lat="25.1500" data-lon="121.3900" data-date="2026-03-15">
+            <div class="place-info"><span class="place-name">台北港 (環島人必拍)</span><div class="weather-grid">連線中...</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=台北港" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+        </div>
+
         <div class="event-card" data-lat="25.1100" data-lon="121.3100" data-date="2026-03-15">
-            <div class="place-info"><span class="place-name">林口水牛坑</span><div class="weather-grid">連線中...</div></div>
-            <a href="https://www.google.com/maps/search/?api=1&query=水牛坑越野場地" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+            <div class="place-info">
+                <span class="place-name">林口水牛坑</span>
+                <span class="note">拍照不入坑</span>
+                <div class="weather-grid">連線中...</div>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=林口水牛坑" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+        </div>
+
+        <div class="event-card" data-lat="24.9750" data-lon="121.0150" data-date="2026-03-15" style="background:rgba(212,175,55,0.1);">
+            <div class="place-info"><span class="place-name">中餐：桃園莫內咖啡</span><div class="weather-grid">連線中...</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=桃園莫內咖啡" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
 
         <div class="event-card" data-lat="24.5244" data-lon="120.7022" data-date="2026-03-15">
-            <div class="place-info"><span class="place-name">通宵日落大道</span><div class="weather-grid">連線中...</div></div>
-            <a href="https://www.google.com/maps/search/?api=1&query=通宵日落大道觀景台" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+            <div class="place-info"><span class="place-name">通宵日落大道觀景台</span><div class="weather-grid">連線中...</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=通宵日落大道" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+        </div>
+
+        <div class="event-card" data-lat="23.5700" data-lon="120.1400" data-date="2026-03-15">
+            <div class="place-info"><span class="place-name">口湖休息站</span><div class="weather-grid">連線中...</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=口湖休息站" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+        </div>
+
+        <div class="event-card">
+            <div class="place-info"><span class="place-name">回 程</span></div>
         </div>
     </div>
 
@@ -95,11 +152,9 @@
                 const lon = card.getAttribute('data-lon');
                 const targetDate = card.getAttribute('data-date');
                 const grid = card.querySelector('.weather-grid');
-
                 try {
                     const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}&lang=zh_tw`);
                     const data = await response.json();
-                    
                     if (data.list) {
                         const w = data.list.find(item => item.dt_txt.includes(targetDate) && new Date(item.dt * 1000).getHours() >= 9) || data.list[0];
                         grid.innerHTML = `
@@ -108,8 +163,8 @@
                             <div class="weather-item"><i class="fa-solid fa-wind"></i> 風速：${(w.wind.speed * 3.6).toFixed(1)} km/h</div>
                             <div class="weather-item"><i class="fa-solid fa-circle-info"></i> 狀況：${w.weather[0].description}</div>
                         `;
-                    } else { grid.innerHTML = 'API 回傳異常'; }
-                } catch (e) { grid.innerHTML = '連線超時'; }
+                    }
+                } catch (e) { grid.innerHTML = '連線失敗'; }
             }
         }
         window.onload = updateWeather;
