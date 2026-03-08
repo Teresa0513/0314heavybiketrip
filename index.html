@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
     <title>2026 寂寞男人環島圓夢杯</title>
-    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
             --gold: #d4af37;
             --gold-light: #f1e5ac;
             --bg-dark: #000000;
-            --card-bg: rgba(22, 22, 22, 0.85);
+            --card-bg: rgba(22, 22, 22, 0.9);
             --text-light: #ffffff;
         }
 
@@ -21,15 +20,14 @@
             background-color: var(--bg-dark);
             font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
             color: var(--text-light);
-            overflow-x: hidden;
         }
 
         /* 視差背景延伸設計 */
         .parallax-hero {
             position: relative;
             width: 100%;
-            height: 60vh; 
-            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('hero.jpg') no-repeat center center;
+            height: 55vh; 
+            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.5)), url('hero.jpg') no-repeat center center;
             background-attachment: fixed;
             background-size: cover;
             display: flex;
@@ -38,25 +36,15 @@
             align-items: center;
         }
 
-        .parallax-hero::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 120px;
-            background: linear-gradient(to top, var(--bg-dark), transparent);
-        }
-
         .header-wrap {
             position: relative;
             z-index: 2;
             text-align: center;
-            padding: 0 15px 25px;
+            padding: 0 15px 20px;
         }
 
         .header-wrap h1 {
-            font-size: 2.2rem;
+            font-size: 2rem;
             margin: 0;
             letter-spacing: 2px;
             text-shadow: 0 0 15px rgba(0,0,0,1);
@@ -65,68 +53,35 @@
         .header-wrap p {
             font-size: 1.1rem;
             color: var(--gold);
-            margin: 8px 0 0;
+            margin: 5px 0 0;
             font-style: italic;
-        }
-
-        /* 資訊區 */
-        .info-pills {
-            background-color: var(--bg-dark);
-            padding: 15px 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .pill {
-            background: rgba(30, 30, 30, 0.95);
-            padding: 10px 20px;
-            border: 1px solid var(--gold);
-            border-radius: 12px;
-            font-size: 1.1rem;
-            width: 85%;
-            max-width: 450px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
 
         .container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 0 15px 80px;
-        }
-
-        /* 天氣氣溫標籤 */
-        .weather-info {
-            font-size: 0.9rem;
-            color: #aaa;
-            margin-top: 5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
+            padding: 20px 15px 80px;
         }
 
         .day-label {
             font-size: 1.8rem;
             color: var(--gold);
-            background: rgba(26, 26, 26, 0.8);
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 35px;
+            background: rgba(26, 26, 26, 0.9);
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 30px;
             border-left: 10px solid var(--gold);
             text-align: center;
-            backdrop-filter: blur(5px);
         }
 
-        /* 行程卡片：全員立體金條 */
+        /* 行程卡片：地點與天氣並存 */
         .event-card {
             margin-top: 15px;
-            padding: 18px 20px;
+            padding: 15px 20px;
             background: var(--card-bg);
             border-radius: 12px;
             display: flex;
+            flex-wrap: wrap; /* 容納天氣資訊換行 */
             justify-content: space-between;
             align-items: center;
             position: relative;
@@ -145,11 +100,29 @@
             box-shadow: 2px 0 10px rgba(212, 175, 55, 0.4);
         }
 
+        .place-info {
+            flex: 1;
+            padding-left: 15px;
+        }
+
         .place-name {
             font-size: 1.5rem;
             font-weight: bold;
-            padding-left: 15px;
-            flex: 1;
+            display: block;
+        }
+
+        /* 詳細天氣預測樣式 */
+        .weather-detail {
+            font-size: 0.9rem;
+            color: #d4af37;
+            margin-top: 4px;
+            display: flex;
+            gap: 12px;
+            font-weight: normal;
+        }
+
+        .weather-detail i {
+            margin-right: 4px;
         }
 
         .nav-link {
@@ -160,12 +133,10 @@
         }
 
         @media (max-width: 768px) {
-            .parallax-hero {
-                height: 50vh;
-                background-attachment: scroll;
-            }
-            .place-name { font-size: 1.4rem; }
-            .day-label { font-size: 1.6rem; }
+            .parallax-hero { height: 45vh; background-attachment: scroll; }
+            .place-name { font-size: 1.3rem; }
+            .day-label { font-size: 1.5rem; }
+            .weather-detail { font-size: 0.85rem; }
         }
     </style>
 </head>
@@ -177,71 +148,88 @@
             <p>Ride with Honor. 2026 Round-the-Island</p>
         </div>
     </div>
-    
-    <div class="info-pills">
-        <div class="pill">
-            <i class="fa-solid fa-motorcycle"></i> <b>TRIDENT | BMW | KAWASAKI</b>
-        </div>
-        <div class="pill">
-            <i class="fa-solid fa-calendar-days"></i> <b>3/14 (六) 05:30 鳳頂 7-11</b>
-        </div>
-    </div>
 
     <div class="container">
-        <div class="day-label">
-            第一天：3/14 (六)
-            <div class="weather-info">
-                <span><i class="fa-solid fa-sun"></i> 多雲時晴</span>
-                <span><i class="fa-solid fa-temperature-half"></i> 18°C - 26°C</span>
-            </div>
-        </div>
+        <div class="day-label">第一天：3/14 (六)</div>
         
         <div class="event-card">
-            <span class="place-name">鳳頂 7-11 集合</span>
+            <div class="place-info">
+                <span class="place-name">鳳頂 7-11 集合</span>
+                <div class="weather-detail">
+                    <span><i class="fa-solid fa-sun"></i> 晴 22°C</span>
+                    <span><i class="fa-solid fa-droplet"></i> 0%</span>
+                </div>
+            </div>
             <a href="https://www.google.com/maps/search/?api=1&query=鳳頂路285號7-11" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
 
         <div class="event-card">
-            <span class="place-name">大武之心 7-11</span>
+            <div class="place-info">
+                <span class="place-name">大武之心 7-11</span>
+                <div class="weather-detail">
+                    <span><i class="fa-solid fa-cloud-sun"></i> 多雲 25°C</span>
+                    <span><i class="fa-solid fa-droplet"></i> 10%</span>
+                </div>
+            </div>
             <a href="https://www.google.com/maps/search/?api=1&query=大武之心7-11" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
 
-        <div class="event-card" style="background: rgba(212,175,55,0.15);">
-            <span class="place-name" style="color:var(--gold-light);">【午餐】新城老街</span>
+        <div class="event-card" style="background: rgba(212,175,55,0.1);">
+            <div class="place-info">
+                <span class="place-name" style="color:var(--gold-light);">【午餐】新城老街</span>
+                <div class="weather-detail">
+                    <span><i class="fa-solid fa-cloud"></i> 陰 23°C</span>
+                    <span><i class="fa-solid fa-droplet"></i> 20%</span>
+                </div>
+            </div>
             <a href="https://www.google.com/maps/search/?api=1&query=新城老街" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
 
         <div class="event-card">
-            <span class="place-name">住宿：羅東幸福 YES 民宿</span>
+            <div class="place-info">
+                <span class="place-name">住宿：羅東幸福 YES 民宿</span>
+                <div class="weather-detail">
+                    <span><i class="fa-solid fa-cloud-showers-heavy"></i> 短暫雨 20°C</span>
+                    <span><i class="fa-solid fa-droplet"></i> 40%</span>
+                </div>
+            </div>
             <a href="https://www.google.com/maps/search/?api=1&query=羅東幸福YES民宿" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
 
-        <div class="day-label">
-            第二天：3/15 (日)
-            <div class="weather-info">
-                <span><i class="fa-solid fa-cloud"></i> 陰時多雲</span>
-                <span><i class="fa-solid fa-temperature-low"></i> 16°C - 22°C</span>
-            </div>
-        </div>
+        <div class="day-label">第二天：3/15 (日)</div>
 
         <div class="event-card">
-            <span class="place-name">坪林茶鄉牌樓</span>
+            <div class="place-info">
+                <span class="place-name">坪林茶鄉牌樓</span>
+                <div class="weather-detail">
+                    <span><i class="fa-solid fa-cloud"></i> 霧 16°C</span>
+                    <span><i class="fa-solid fa-droplet"></i> 30%</span>
+                </div>
+            </div>
             <a href="https://www.google.com/maps/search/?api=1&query=坪林茶鄉牌樓" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
 
-        <div class="event-card" style="background: rgba(212,175,55,0.15);">
-            <span class="place-name" style="color:var(--gold-light);">【午餐】桃園莫內咖啡</span>
+        <div class="event-card" style="background: rgba(212,175,55,0.1);">
+            <div class="place-info">
+                <span class="place-name" style="color:var(--gold-light);">【午餐】桃園莫內咖啡</span>
+                <div class="weather-detail">
+                    <span><i class="fa-solid fa-cloud-sun"></i> 多雲 21°C</span>
+                    <span><i class="fa-solid fa-droplet"></i> 10%</span>
+                </div>
+            </div>
             <a href="https://www.google.com/maps/search/?api=1&query=桃園莫內咖啡" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
 
         <div class="event-card">
-            <span class="place-name">通宵日落大道</span>
+            <div class="place-info">
+                <span class="place-name">通宵日落大道</span>
+                <div class="weather-detail">
+                    <span><i class="fa-solid fa-sun"></i> 晴 24°C</span>
+                    <span><i class="fa-solid fa-droplet"></i> 0%</span>
+                </div>
+            </div>
             <a href="https://www.google.com/maps/search/?api=1&query=通宵日落大道觀景台" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
-    </div>
-
-    <div style="background: #111; padding: 40px 20px; text-align: center; border-top: 2px solid var(--gold);">
-        <p style="font-size: 1.4rem; font-style: italic; color: #ccc;">「凱旋而歸，是騎士唯一的終點。」</p>
     </div>
 
 </body>
