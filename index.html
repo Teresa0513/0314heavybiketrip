@@ -4,94 +4,119 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
     <title>2026 寂寞男人環島圓夢杯</title>
+    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
             --gold: #d4af37;
             --gold-light: #f1e5ac;
             --bg-dark: #000000;
-            --card-bg: #111111;
+            --card-bg: rgba(17, 17, 17, 0.9); /* 半透明讓背景透出來 */
             --text-light: #ffffff;
         }
 
-        body {
-            font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-light);
+        body, html {
             margin: 0;
             padding: 0;
-            line-height: 1.4;
+            background-color: var(--bg-dark);
+            font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+            color: var(--text-light);
+            overflow-x: hidden;
         }
 
-        /* 核心修復：使用 aspect-ratio 確保背景圖不被切到上面 */
-        .hero-viewport {
-            width: 100%;
-            /* 根據海報 16:9 比例自動撐開高度 */
-            aspect-ratio: 16 / 9; 
-            background: url('hero.jpg') no-repeat center center;
-            background-size: contain; /* 確保全圖顯現，不裁切 */
-            background-color: #000;
+        /* 關鍵：視差背景延伸設計 */
+        .parallax-hero {
             position: relative;
+            width: 100%;
+            height: 60vh; /* 調整高度確保在手機上看車子比例正確 */
+            background-image: url('hero.jpg');
+            background-attachment: fixed; /* 固定背景，造成視差感 */
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
         }
 
-        /* 標題區：完全獨立在圖片下方，解決重疊與裁切 */
-        .header-section {
+        /* 漸層過渡：讓圖片底部自然融入下方的黑色內容 */
+        .parallax-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(to top, var(--bg-dark), transparent);
+        }
+
+        .header-wrap {
+            position: relative;
+            z-index: 2;
             text-align: center;
-            padding: 15px 10px;
-            background: linear-gradient(to bottom, #000, #0a0a0a);
+            padding: 0 15px 30px;
         }
 
-        .header-section h1 {
-            font-size: 1.8rem;
+        .header-wrap h1 {
+            font-size: 2.2rem;
             margin: 0;
-            color: #fff;
             letter-spacing: 2px;
-            font-weight: 900;
+            text-shadow: 0 0 15px rgba(0,0,0,1);
         }
 
-        .header-section p {
+        .header-wrap p {
             font-size: 1.1rem;
             color: var(--gold);
-            margin: 5px 0 15px;
+            margin: 10px 0 0;
             font-style: italic;
+            text-shadow: 0 0 10px rgba(0,0,0,1);
         }
 
-        .info-bar {
-            background: rgba(30, 30, 30, 0.95);
-            padding: 10px 15px;
-            border: 1px solid var(--gold);
-            border-radius: 50px;
-            margin: 0 auto 10px;
-            font-size: 1.1rem;
-            width: 90%;
-            max-width: 450px;
+        /* 資訊條 */
+        .info-pills {
+            background-color: var(--bg-dark);
+            padding: 20px 0;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+        }
+
+        .pill {
+            background: rgba(30, 30, 30, 0.95);
+            padding: 12px 20px;
+            border: 1px solid var(--gold);
+            border-radius: 12px;
+            font-size: 1.2rem;
+            width: 85%;
+            max-width: 450px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
 
         .container {
-            max-width: 600px;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 0 15px 80px;
+            padding: 0 15px 100px;
         }
 
         .day-label {
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: var(--gold);
-            background: #1a1a1a;
-            padding: 12px;
-            border-radius: 8px;
-            margin-top: 25px;
+            background: rgba(26, 26, 26, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 40px;
             border-left: 10px solid var(--gold);
             text-align: center;
+            backdrop-filter: blur(5px);
         }
 
-        /* 全體金條設計 */
+        /* 行程卡片：全員金條 */
         .event-card {
-            margin-top: 15px;
-            padding: 18px 20px;
+            margin-top: 20px;
+            padding: 20px;
             background: var(--card-bg);
             border-radius: 12px;
             display: flex;
@@ -100,8 +125,10 @@
             position: relative;
             overflow: hidden;
             border: 1px solid #222;
+            backdrop-filter: blur(5px);
         }
 
+        /* 每一行左側的立體金條 */
         .event-card::before {
             content: '';
             position: absolute;
@@ -116,40 +143,43 @@
         .place-name {
             font-size: 1.6rem;
             font-weight: bold;
-            color: #fff;
             padding-left: 15px;
             flex: 1;
         }
 
-        /* 導航按鈕：大指南針 */
+        /* 指南針導航按鈕 */
         .nav-link {
             color: var(--gold);
-            font-size: 1.8rem;
+            font-size: 2rem;
             text-decoration: none;
-            padding: 5px;
+            padding-left: 15px;
         }
 
-        @media (max-width: 480px) {
-            .header-section h1 { font-size: 1.6rem; }
+        @media (max-width: 768px) {
+            .parallax-hero {
+                height: 50vh; /* 手機版高度適配 */
+                background-attachment: scroll; /* 手機版視差有時會抖動，改為滾動最穩定 */
+            }
+            .header-wrap h1 { font-size: 1.8rem; }
             .place-name { font-size: 1.4rem; }
-            .day-label { font-size: 1.5rem; }
-            /* 手機版微調比例，防止畫面過長 */
-            .hero-viewport { aspect-ratio: 16 / 10; }
+            .day-label { font-size: 1.7rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="hero-viewport"></div>
+    <div class="parallax-hero">
+        <div class="header-wrap">
+            <h1>2026 寂寞男人。圓夢杯</h1>
+            <p>Ride with Honor. 2026 Round-the-Island</p>
+        </div>
+    </div>
     
-    <div class="header-section">
-        <h1>2026 寂寞男人。圓夢杯</h1>
-        <p>Ride with Honor. 2026 Round-the-Island</p>
-        
-        <div class="info-bar">
+    <div class="info-pills">
+        <div class="pill">
             <i class="fa-solid fa-motorcycle"></i> <b>TRIDENT | BMW | KAWASAKI</b>
         </div>
-        <div class="info-bar">
+        <div class="pill">
             <i class="fa-solid fa-calendar-days"></i> <b>3/14 (六) 05:30 鳳頂 7-11</b>
         </div>
     </div>
@@ -159,7 +189,7 @@
         
         <div class="event-card">
             <span class="place-name">鳳頂 7-11 集合</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=鳳頂路285號7-11" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=鳳頂7-11" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
 
         <div class="event-card">
@@ -167,7 +197,7 @@
             <a href="https://www.google.com/maps/search/?api=1&query=大武之心7-11" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
 
-        <div class="event-card" style="background: rgba(212,175,55,0.1);">
+        <div class="event-card" style="background: rgba(212,175,55,0.15);">
             <span class="place-name" style="color:var(--gold-light);">【午餐】新城老街</span>
             <a href="https://www.google.com/maps/search/?api=1&query=新城老街" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
@@ -184,18 +214,18 @@
             <a href="https://www.google.com/maps/search/?api=1&query=坪林茶鄉牌樓" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
 
-        <div class="event-card" style="background: rgba(212,175,55,0.1);">
+        <div class="event-card" style="background: rgba(212,175,55,0.15);">
             <span class="place-name" style="color:var(--gold-light);">【午餐】桃園莫內咖啡</span>
             <a href="https://www.google.com/maps/search/?api=1&query=桃園莫內咖啡" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
 
         <div class="event-card">
             <span class="place-name">通宵日落大道</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=通宵日落大道觀景台" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=通宵日落大道" class="nav-link" target="_blank"><i class="fa-solid fa-compass"></i></a>
         </div>
     </div>
 
-    <div style="background: #111; padding: 40px 20px; text-align: center; border-top: 2px solid var(--gold);">
+    <div style="background: rgba(17,17,17,1); padding: 50px 20px; text-align: center; border-top: 2px solid var(--gold);">
         <p style="font-size: 1.4rem; font-style: italic; color: #ccc;">「凱旋而歸，是騎士唯一的終點。」</p>
     </div>
 
