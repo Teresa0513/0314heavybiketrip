@@ -140,11 +140,27 @@
             color: #666;
         }
 
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            .hero p { font-size: 1.1rem; }
+@media (max-width: 768px) {
+            .hero {
+                /* 針對手機版，將背景改為 contain，確保圖片完整顯示不被裁切 */
+                background-size: contain; 
+                background-position: center top; /* 圖片靠上對齊 */
+                background-color: #000; /* 圖片下方留黑，避免破綻 */
+                height: auto; /* 高度隨圖片調整 */
+                min-height: 100vh;
+                padding-top: 60%; /* 根據 16:9 比例預留圖片空間，防止文字遮擋車頭 */
+                justify-content: flex-start; /* 文字往圖片下方排 */
+            }
+            .hero h1 { 
+                font-size: 1.8rem; 
+                margin-top: 20px;
+            }
+            .hero p { font-size: 1rem; }
+            .info-bar { 
+                font-size: 0.85rem; 
+                padding: 8px 15px;
+            }
         }
-    </style>
 </head>
 <body>
 
