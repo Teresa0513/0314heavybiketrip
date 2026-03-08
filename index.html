@@ -5,11 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
     <title>2026 寂寞男人環島圓夢杯</title>
     
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="2026圓夢杯">
-    <link rel="apple-touch-icon" href="hero.jpg">
-    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
@@ -17,7 +12,6 @@
             --bg-dark: #000000;
             --text-light: #ffffff;
             --btn-blue: #007bff;
-            --btn-blue-hover: #0056b3;
         }
 
         body {
@@ -26,26 +20,25 @@
             color: var(--text-light);
             margin: 0;
             padding: 0;
-            line-height: 1.8;
-            -webkit-tap-highlight-color: transparent;
+            line-height: 1.6;
         }
 
-        /* 頂部主視覺：解決文字重疊，確保圖片完整 */
+        /* 主視覺區：解決文字重疊 */
         .hero {
             width: 100%;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url('hero.jpg') no-repeat center center/cover;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('hero.jpg') no-repeat center center/cover;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 30px 20px;
+            padding: 20px;
             box-sizing: border-box;
-            min-height: 50vh; /* 電腦版高度縮小 */
+            min-height: 45vh;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 2.5rem; /* 標題小一點，避免掉下來 */
             margin: 10px 0;
             color: #fff;
             text-shadow: 2px 2px 10px rgba(0,0,0,1);
@@ -53,76 +46,74 @@
         }
 
         .hero p {
-            font-size: 1.6rem; /* 文字小一點，避免掉下來 */
+            font-size: 1.2rem; /* 語錄小一點，更有質感 */
             font-style: italic;
             color: var(--primary-color);
             margin: 5px 0 20px 0;
-            font-weight: bold;
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
         }
 
         .info-bar {
             background: rgba(30, 30, 30, 0.9);
-            padding: 10px 20px;
-            border: 2px solid var(--primary-color);
-            border-radius: 10px;
-            margin-bottom: 10px;
-            font-size: 1.2rem; /* 字體再大一點 */
+            padding: 8px 15px;
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
             width: 90%;
-            max-width: 500px;
+            max-width: 450px;
         }
 
         /* 行程容器 */
         .container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 20px 15px 100px 15px; /* 縮小空行 */
+            padding: 10px 15px 80px 15px;
         }
 
         .day-title {
-            font-size: 2.2rem; /* 極大標題，易於識別 */
+            font-size: 2rem;
             color: var(--primary-color);
             background: #111;
-            padding: 10px 15px;
+            padding: 8px 15px;
             border-radius: 8px;
-            margin-top: 30px; /* 縮小空行 */
-            border-left: 10px solid var(--primary-color);
+            margin-top: 25px;
+            border-left: 8px solid var(--primary-color);
             text-align: center;
         }
 
         .event {
-            margin-top: 20px; /* 縮小空行 */
-            padding: 15px;
-            background: #080808;
-            border-radius: 10px;
+            margin-top: 15px;
+            padding: 12px 15px;
+            background: #0a0a0a;
+            border-radius: 8px;
             border: 1px solid #222;
         }
 
         .location {
-            font-size: 1.5rem; /* 字體加大，中年友好 */
+            font-size: 1.5rem; /* 字體維持大尺寸，方便中年讀取 */
             font-weight: bold;
             color: #fff;
-            display: block;
-            margin-bottom: 10px;
+            display: inline-block; /* 讓地點與按鈕可以並排 */
+            margin-bottom: 8px;
         }
 
-        /* 導航按鈕：中年級大按鈕，騎車手抖也很好按 */
+        /* 縮小後的導航按鈕：不再突兀 */
         .map-link {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--btn-blue), var(--btn-blue-hover));
+            display: inline-flex;
+            align-items: center;
+            background: var(--btn-blue);
             color: #fff !important;
-            padding: 12px 25px;
-            border-radius: 8px;
+            padding: 4px 12px; /* 縮小內距 */
+            border-radius: 4px;
             text-decoration: none;
-            font-size: 1rem; /* 字體小一點，讓「開啟導航」看起來精緻 */
+            font-size: 0.9rem; /* 字體縮小 */
             font-weight: bold;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.4);
-            border: none;
+            margin-left: 10px; /* 與地點拉開一點距離 */
+            vertical-align: middle;
         }
 
-        .map-link:active {
-            transform: scale(0.98);
+        .map-link i {
+            margin-right: 4px;
         }
 
         /* 手機版排版修正 */
@@ -130,15 +121,17 @@
             .hero {
                 background: url('hero.jpg') no-repeat center top/contain;
                 background-color: #000;
-                padding-top: 55vw; /* 依圖片比例留空，解決文字重疊 */
+                padding-top: 58vw; /* 確保不擋到圖片 */
                 min-height: auto;
             }
-            .hero h1 { font-size: 1.8rem; margin-top: 15px; }
-            .hero p { font-size: 1.2rem; }
-            .info-bar { font-size: 1.1rem; padding: 10px; }
-            .day-title { font-size: 1.8rem; }
+            .hero h1 { font-size: 1.8rem; }
             .location { font-size: 1.4rem; }
-            .map-link { width: 100%; text-align: center; box-sizing: border-box; } /* 手機版按鈕全寬 */
+            /* 在極小螢幕下，按鈕換行但維持小方塊 */
+            .map-link { 
+                display: inline-block;
+                margin-left: 0;
+                margin-top: 5px;
+            }
         }
     </style>
 </head>
@@ -160,21 +153,21 @@
         
         <div class="event">
             <span class="location">集合：鳳頂 7-11</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=7-ELEVEN鳳頂門市" class="map-link" target="_blank"><i class="fa-solid fa-location-arrow"></i> 開啟導航</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=7-ELEVEN+鳳頂門市" class="map-link" target="_blank"><i class="fa-solid fa-location-arrow"></i> 開啟導航</a>
         </div>
 
         <div class="event">
             <span class="location">1. 大武之心 7-11</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=大武之心7-11" class="map-link" target="_blank"><i class="fa-solid fa-location-arrow"></i> 開啟導航</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=7-ELEVEN+大武之心門市" class="map-link" target="_blank"><i class="fa-solid fa-location-arrow"></i> 開啟導航</a>
         </div>
 
         <div class="event">
-            <span class="location">2. 光復糖廠 (193縣道)</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=花蓮光復糖廠" class="map-link" target="_blank"><i class="fa-solid fa-location-arrow"></i> 開啟導航</a>
+            <span class="location">2. 光復糖廠</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=花蓮觀光糖廠" class="map-link" target="_blank"><i class="fa-solid fa-location-arrow"></i> 開啟導航</a>
         </div>
 
         <div class="event">
-            <span class="location" style="color:var(--primary-color);">【中餐】新城老街</span>
+            <span class="location" style="color:var(--primary-color);">【午餐】新城老街</span>
             <a href="https://www.google.com/maps/search/?api=1&query=新城老街" class="map-link" target="_blank"><i class="fa-solid fa-location-arrow"></i> 開啟導航</a>
         </div>
 
@@ -185,12 +178,12 @@
 
         <div class="event">
             <span class="location">4. 南方澳豆腐岬</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=南方澳豆腐岬" class="map-link" target="_blank"><i class="fa-solid fa-location-arrow"></i> 開啟導航</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=豆腐岬風景區" class="map-link" target="_blank"><i class="fa-solid fa-location-arrow"></i> 開啟導航</a>
         </div>
 
         <div class="event">
-            <span class="location">5. 住宿：羅東幸福 YES 民宿</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=羅東幸福YES民宿" class="map-link" target="_blank"><i class="fa-solid fa-location-arrow"></i> 開啟導航</a>
+            <span class="location">5. 住宿：幸福 YES 民宿</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=幸福YES民宿" class="map-link" target="_blank"><i class="fa-solid fa-location-arrow"></i> 開啟導航</a>
         </div>
 
         <div class="event">
@@ -207,37 +200,36 @@
 
         <div class="event">
             <span class="location">2. 財茂彎 328 喝咖啡</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=財茂彎328" class="map-link" target="_blank"><i class="fa-solid fa-location-arrow"></i> 開啟導航</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=財茂彎-328+coffee" class="map-link" target="_blank"><i class="fa-solid fa-location-arrow"></i> 開啟導航</a>
         </div>
 
         <div class="event">
-            <span class="location">4. 台北港打卡</span>
+            <span class="location">3. 台北港打卡</span>
             <a href="https://www.google.com/maps/search/?api=1&query=台北港" class="map-link" target="_blank"><i class="fa-solid fa-location-arrow"></i> 開啟導航</a>
         </div>
 
         <div class="event">
-            <span class="location">5. 林口水牛坑</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=林口水牛坑" class="map-link" target="_blank"><i class="fa-solid fa-location-arrow"></i> 開啟導航</a>
+            <span class="location">4. 林口水牛坑</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=水牛坑越野場地" class="map-link" target="_blank"><i class="fa-solid fa-location-arrow"></i> 開啟導航</a>
         </div>
 
         <div class="event">
-            <span class="location highlight" style="color:var(--primary-color);">【中餐】桃園莫內咖啡</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=桃園莫內咖啡" class="map-link" target="_blank"><i class="fa-solid fa-location-arrow"></i> 開啟導航</a>
+            <span class="location" style="color:var(--primary-color);">【午餐】桃園莫內咖啡</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=莫內咖啡" class="map-link" target="_blank"><i class="fa-solid fa-location-arrow"></i> 開啟導航</a>
         </div>
 
         <div class="event">
-            <span class="location">6. 通宵日落大道</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=通宵日落大道" class="map-link" target="_blank"><i class="fa-solid fa-location-arrow"></i> 開啟導航</a>
+            <span class="location">5. 通宵日落大道</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=通宵日落大道觀景台" class="map-link" target="_blank"><i class="fa-solid fa-location-arrow"></i> 開啟導航</a>
         </div>
 
         <div class="event">
-            <span class="location">7. 回程：口湖休息站</span>
+            <span class="location">6. 回程：口湖休息站</span>
             <a href="https://www.google.com/maps/search/?api=1&query=口湖休息站" class="map-link" target="_blank"><i class="fa-solid fa-location-arrow"></i> 開啟導航</a>
         </div>
     </div>
 
     <script>
-        // 簡易快取 Service Worker 註冊
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js');
         }
