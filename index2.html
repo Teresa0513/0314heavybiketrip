@@ -1,1 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>2026 寂寞男人。圓夢杯</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root { --gold: #d4af37; --gold-light: #f1e5ac; --bg-dark: #000; --card-bg: rgba(25, 25, 25, 0.95); }
+        body { font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif; background-color: var(--bg-dark); color: #fff; margin: 0; padding: 0; }
+        
+        /* 影片背景 Section */
+        .hero-video-container { 
+            position: relative;
+            width: 100%; 
+            aspect-ratio: 16 / 9; 
+            overflow: hidden;
+            background: #000;
+        }
 
+        .hero-video-container video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            filter: brightness(0.7); /* 調暗影片讓文字更清晰 */
+        }
+
+        /* 影片上的漸層遮罩，讓下方轉場更平滑 */
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to bottom, transparent, #000);
+        }
+
+        .brand-section { text-align: center; padding: 30px 20px; background: #000; position: relative; z-index: 2; }
+        .brand-section h1 { font-size: 2.2rem; margin: 0; letter-spacing: 3px; font-weight: 900; color: #fff; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        .honor-slogan { font-size: 1.2rem; color: var(--gold); font-style: italic; font-weight: bold; margin: 10px 0 20px; }
+        
+        .container { max-width: 650px; margin: 0 auto; padding: 0 15px 100px; }
+        .day-label { font-size: 1.6rem; color: var(--gold); background: #1a1a1a; padding: 15px; border-radius: 8px; margin-top: 40px; border-left: 10px solid var(--gold); text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        
+        .event-card { margin-top: 15px; padding: 20px; background: var(--card-bg); border-radius: 12px; display: flex; justify-content: space-between; align-items: center; position: relative; border: 1px solid #333; overflow: hidden; transition: 0.3s; }
+        .event-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+        .event-card::before { content: ''; position: absolute; left: 0; top: 0; width: 8px; height: 100%; background: linear-gradient(180deg, var(--gold-light), var(--gold)); }
+        
+        .place-info { flex: 1; padding-left: 12px; }
+        .place-name { font-size: 1.5rem; font-weight: bold; display: block; color: #fff; }
+        .weather-grid { margin-top: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.95rem; color: var(--gold-light); min-height: 40px; }
+        .weather-item { display: flex; align-items: center; gap: 6px; }
+        .weather-item i { width: 18px; color: var(--gold); font-size: 1rem; }
+        
+        .nav-btn { color: var(--gold); font-size: 2.2rem; text-decoration: none; padding-left: 15px; transition: 0.2s; }
+        .nav-btn:active { transform: scale(0.9); color: var(--gold-light); }
+        .note { font-size: 0.9rem; color: #aaa; margin-top: 6px; display: block; }
+
+        /* 手機版微調 */
+        @media (max-width: 480px) {
+            .brand-section h1 { font-size: 1.8rem; }
+            .place-name { font-size: 1.3rem; }
+            .weather-grid { font-size: 0.85rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero-video-container">
+        <video autoplay muted loop playsinline poster="hero.jpg">
+            <source src="hero-video.mp4" type="video/mp4">
+            您的瀏覽器不支援影片播放。
+        </video>
+        <div class="hero-overlay"></div>
+    </div>
+
+    <div class="brand-section">
+        <h1>2026 寂寞男人。圓夢杯</h1>
+        <div class="honor-slogan">Ride with Honor. 2026 Round-the-Island</div>
+        <div style="background:rgba(212,175,55,0.15); padding:12px 25px; border:1px solid var(--gold); border-radius:50px; display:inline-block; font-size:1rem; font-weight: bold; color: var(--gold-light);">
+            TRIUMPH | BMW | KAWASAKI
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="day-label">3/14 (六) 05:30 鳳頂 7-11</div>
+        
+        <div class="event-card" data-lat="22.5925" data-lon="120.3541" data-date="2026-03-14">
+            <div class="place-info"><span class="place-name">鳳頂 7-11 集合出發</span><div class="weather-grid">讀取氣象中...</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=22.5925,120.3541" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+        </div>
+
+        <div class="event-card" data-lat="22.3417" data-lon="120.8944" data-date="2026-03-14">
+            <div class="place-info"><span class="place-name">大武之心 7-11</span><div class="weather-grid">讀取氣象中...</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=22.3417,120.8944" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+        </div>
+
+        <div class="event-card" data-lat="23.6558" data-lon="121.4219" data-date="2026-03-14">
+            <div class="place-info"><span class="place-name">台9線接193光復糖廠</span><div class="weather-grid">讀取氣象中...</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=23.6558,121.4219" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+        </div>
+
+        <div class="event-card" data-lat="24.1281" data-lon="121.6436" data-date="2026-03-14" style="background:rgba(212,175,55,0.1);">
+            <div class="place-info"><span class="place-name"><i class="fa-solid fa-utensils" style="color:var(--gold); margin-right:8px;"></i>新城老街 (午餐)</span><div class="weather-grid">讀取氣象中...</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=24.1281,121.6436" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+        </div>
+
+        <div class="event-card" data-lat="24.2544" data-lon="121.7511" data-date="2026-03-14">
+            <div class="place-info"><span class="place-name">台泥 DAKA 園區</span><div class="weather-grid">讀取氣象中...</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=24.2544,121.7511" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+        </div>
+
+        <div class="event-card" data-lat="24.5847" data-lon="121.8656" data-date="2026-03-14">
+            <div class="place-info"><span class="place-name">南方澳豆腐岬</span><div class="weather-grid">讀取氣象中...</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=24.5847,121.8656" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+        </div>
+
+        <div class="event-card" data-lat="24.6750" data-lon="121.7678" data-date="2026-03-14">
+            <div class="place-info">
+                <span class="place-name"><i class="fa-solid fa-bed" style="color:var(--gold); margin-right:8px;"></i>羅東幸福 YES 民宿</span>
+                <span class="note">羅東鎮中山路三段62號</span>
+                <div class="weather-grid">讀取氣象中...</div>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=24.6750,121.7678" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+        </div>
+
+        <div class="day-label">3/15 (日) 07:00 出發</div>
+
+        <div class="event-card" data-lat="24.9367" data-lon="121.7117" data-date="2026-03-15">
+            <div class="place-info"><span class="place-name">北宜坪林茶鄉牌樓</span><div class="weather-grid">讀取氣象中...</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=24.9367,121.7117" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+        </div>
+
+        <div class="event-card" data-lat="24.9583" data-lon="121.6833" data-date="2026-03-15">
+            <div class="place-info">
+                <span class="place-name">財茂彎 328 咖啡</span>
+                <span class="note">停留 1 小時</span>
+                <div class="weather-grid">讀取氣象中...</div>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=24.9583,121.6833" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+        </div>
+
+        <div class="event-card" data-lat="25.1500" data-lon="121.3900" data-date="2026-03-15">
+            <div class="place-info"><span class="place-name">台北港 (必拍點)</span><div class="weather-grid">讀取氣象中...</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=25.1500,121.3900" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+        </div>
+
+        <div class="event-card" data-lat="24.5244" data-lon="120.7022" data-date="2026-03-15">
+            <div class="place-info"><span class="place-name">通宵日落大道</span><div class="weather-grid">讀取氣象中...</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=24.5244,120.7022" class="nav-btn" target="_blank"><i class="fa-solid fa-compass"></i></a>
+        </div>
+
+        <div class="event-card">
+            <div class="place-info"><span class="place-name">平安回程</span><span class="note">期待下一次圓夢之旅</span></div>
+        </div>
+    </div>
+
+    <script>
+        const apiKey = '88ab07bdb1492d90271d2146ba5efe95'; 
+        async function updateWeather() {
+            const cards = document.querySelectorAll('.event-card[data-lat]');
+            for (const card of cards) {
+                const lat = card.getAttribute('data-lat');
+                const lon = card.getAttribute('data-lon');
+                const targetDate = card.getAttribute('data-date');
+                const grid = card.querySelector('.weather-grid');
+                try {
+                    const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}&lang=zh_tw`);
+                    const data = await response.json();
+                    if (data.list) {
+                        // 尋找當天上午 9 點到中午左右的預報，若無則抓第一筆
+                        const w = data.list.find(item => item.dt_txt.includes(targetDate) && new Date(item.dt * 1000).getHours() >= 9) || data.list[0];
+                        grid.innerHTML = `
+                            <div class="weather-item"><i class="fa-solid fa-temperature-half"></i> 體感：${Math.round(w.main.feels_like)}°C</div>
+                            <div class="weather-item"><i class="fa-solid fa-cloud-rain"></i> 降雨機率：${Math.round(w.pop * 100)}%</div>
+                            <div class="weather-item"><i class="fa-solid fa-wind"></i> 風速：${(w.wind.speed * 3.6).toFixed(1)} km/h</div>
+                            <div class="weather-item"><i class="fa-solid fa-circle-info"></i> ${w.weather[0].description}</div>
+                        `;
+                    }
+                } catch (e) { grid.innerHTML = '氣象連線失敗'; }
+            }
+        }
+        window.onload = updateWeather;
+    </script>
+</body>
+</html>
